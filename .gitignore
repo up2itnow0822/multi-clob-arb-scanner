@@ -1,0 +1,50 @@
+# Environment & secrets — NEVER commit these
+.env
+.env.*
+*.pem
+*.key
+config.yml          # Your personal config with API keys
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.tox/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+*.log
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Scanner output
+*.json.out
+opportunities/
+scans/
+
+# Kalshi private keys (extra safety)
+*private*.pem
+*private*.key
+kalshi_key*

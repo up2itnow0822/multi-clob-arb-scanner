@@ -1,0 +1,19 @@
+# Multi-CLOB Arb Scanner — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core HTTP client
+requests>=2.31.0
+
+# YAML config file support
+PyYAML>=6.0.1
+
+# Kalshi RSA authentication (needed when you add your Kalshi API key)
+# Install: pip install cryptography
+cryptography>=42.0.0
+
+# Optional: richer terminal output
+# rich>=13.7.0
+
+# Optional: async scanning (higher throughput)
+# aiohttp>=3.9.0
+# asyncio  # stdlib — no install needed

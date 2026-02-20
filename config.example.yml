@@ -1,0 +1,99 @@
+# Multi-CLOB Arb Scanner — Example Configuration
+# ─────────────────────────────────────────────────
+# Copy this file to config.yml and fill in your values.
+# config.yml is gitignored — your API keys stay local.
+#
+# Usage:
+#   python arb_scanner.py --config config.yml
+#   python arb_scanner.py               # auto-loads config.yml if present
+
+
+# ── Scan Settings ────────────────────────────────────────────────────────────
+
+# Keywords to search across all enabled platforms
+# Add topics you want to monitor for cross-platform pricing gaps
+keywords:
+  - "bitcoin"
+  - "trump"
+  - "federal reserve"
+  - "election"
+  - "inflation"
+  - "interest rate"
+  - "ukraine"
+  - "ai"
+
+# Minimum absolute YES-price spread (in %) to flag as an opportunity
+# Lower = more results (including noise); higher = only strong signals
+# Default: 3.0  |  Recommended range: 2.0 – 10.0
+min_spread_pct: 3.0
+
+# Minimum number of shared non-stop-words required to match two market titles
+# Higher = fewer false positives; lower = more matches (risking wrong pairings)
+# Default: 3
+min_word_overlap: 3
+
+# Maximum markets to fetch per keyword per platform
+# Higher = more coverage but slower; Polymarket supports up to 100
+market_limit: 50
+
+# Output format: "table" (human-readable) or "json" (machine-readable)
+output_format: table
+
+
+# ── Polymarket ────────────────────────────────────────────────────────────────
+# No API key required. Public Gamma + CLOB APIs.
+
+polymarket:
+  enabled: true
+  timeout: 10           # HTTP request timeout in seconds
+
+  # Override default API endpoints (advanced)
+  # gamma_url: "https://gamma-api.polymarket.com/markets"
+  # clob_url:  "https://clob.polymarket.com"
+
+
+# ── Kalshi ────────────────────────────────────────────────────────────────────
+# Requires an API key. Get one at https://kalshi.com → Settings → API Keys
+# Kalshi uses RSA-signed requests (see CONTRIBUTING.md for auth implementation).
+#
+# Environment variable alternatives (preferred for security):
+#   KALSHI_API_KEY_ID=your-key-id
+#   KALSHI_PRIVATE_KEY_PATH=/path/to/private.pem
+
+kalshi:
+  enabled: true
+  use_demo: false       # Set true to use demo environment (paper trading)
+  timeout: 10
+
+  # TODO: Add your Kalshi API credentials
+  api_key_id: ""                    # Your API key ID from Kalshi dashboard
+  private_key_path: ""              # Absolute path to your RSA private key PEM file
+  # Example: private_key_path: "/Users/yourname/.kalshi/private.pem"
+
+  # Override API base URL (advanced)
+  # prod_url:  "https://api.kalshi.com/v1"
+  # demo_url:  "https://demo-api.kalshi.co/v1"
+
+
+# ── Future Venues (coming soon) ───────────────────────────────────────────────
+# Uncomment and configure when these integrations are available.
+
+# novig:
+#   enabled: false
+#   api_key: ""         # TODO: Get at novig.com when API launches
+
+# manifold:
+#   enabled: false
+#   # No API key required (public API)
+
+
+# ── Alerting (optional, planned) ──────────────────────────────────────────────
+# alerts:
+#   telegram:
+#     enabled: false
+#     bot_token: ""
+#     chat_id: ""
+#   discord:
+#     enabled: false
+#     webhook_url: ""
+#   min_alert_spread_pct: 5.0      # Only alert on strong signals
