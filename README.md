@@ -1,5 +1,8 @@
 # Multi-CLOB Arb Scanner
 
+[![Discord](https://img.shields.io/discord/1475549260140253194?label=Community&logo=discord&color=5865F2)](https://discord.gg/958AACqf7Y)
+
+
 > **Independent multi-CLOB arbitrage scanner for prediction markets.**
 > Works with Polymarket today. Add your Kalshi API key to unlock full cross-CLOB scanning.
 > Built after Polymarket acquired Dome — because the community deserves neutral infrastructure.
