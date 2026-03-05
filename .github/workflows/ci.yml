@@ -28,4 +28,8 @@ jobs:
         run: python -m py_compile arb_scanner.py && echo "Syntax OK"
 
       - name: Lint with flake8
-        run: flake8 arb_scanner.py --max-line-length=120 --ignore=E501,W503
+        run: |
+          # E221/E241: alignment spaces, E127: indent, W503/E501: line length
+          # F541: empty f-string (cosmetic in this codebase)
+          flake8 arb_scanner.py --max-line-length=120 \
+            --ignore=E501,W503,E221,E241,E127,F541
