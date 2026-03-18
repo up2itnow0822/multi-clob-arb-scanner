@@ -65,7 +65,7 @@ Bitcoin above $95k on Feb 28 close?                  0.510   0.450     6.0%     
 
 ```bash
 # 1. Clone
-git clone https://github.com/up2itnow/multi-clob-arb-scanner.git
+git clone https://github.com/up2itnow0822/multi-clob-arb-scanner.git
 cd multi-clob-arb-scanner
 
 # 2. Install dependencies
@@ -173,7 +173,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for how to:
 - [ ] Manifold Markets integration (open API)
 - [ ] Persistent opportunity logging (SQLite)
 - [ ] Telegram / Discord alerting on spread detection
-- [ ] Auto-execution via [Agent Wallet SDK](https://github.com/up2itnow/agent-wallet-sdk)
+- [ ] Auto-execution via [Agent Wallet SDK](https://github.com/up2itnow0822/agent-wallet-sdk)
 - [ ] Embedding-based market matching (OpenAI / local model)
 - [ ] Fee-adjusted profit calculations
 
