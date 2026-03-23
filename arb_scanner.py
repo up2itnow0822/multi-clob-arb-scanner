@@ -221,8 +221,8 @@ class KalshiClient:
     We welcome PRs — see CONTRIBUTING.md.
     """
 
-    PROD_URL  = "https://api.kalshi.com/v1"
-    DEMO_URL  = "https://demo-api.kalshi.co/v1"
+    PROD_URL = "https://api.kalshi.com/v1"
+    DEMO_URL = "https://demo-api.kalshi.co/v1"
 
     def __init__(
         self,
@@ -324,7 +324,7 @@ class KalshiClient:
             for m in markets:
                 # Kalshi prices are in cents (0–99); normalise to 0.0–1.0
                 yes_price = float(m.get("yes_bid", 50)) / 100
-                no_price  = float(m.get("no_bid",  50)) / 100
+                no_price = float(m.get("no_bid", 50)) / 100
 
                 results.append(MarketPrice(
                     platform="kalshi",
@@ -404,7 +404,7 @@ def find_arb_opportunities(
 
         for km in kalshi_markets:
             km_words = {w for w in km.event_title.lower().split() if w not in _STOP_WORDS}
-            common   = pm_words & km_words
+            common = pm_words & km_words
 
             if len(common) < min_word_overlap:
                 continue
@@ -413,8 +413,8 @@ def find_arb_opportunities(
             if spread < min_spread_pct:
                 continue
 
-            cheap_yes  = min(pm.yes_price, km.yes_price)
-            cheap_no   = 1 - max(pm.yes_price, km.yes_price)
+            cheap_yes = min(pm.yes_price, km.yes_price)
+            cheap_no = 1 - max(pm.yes_price, km.yes_price)
             total_cost = cheap_yes + cheap_no
 
             if total_cost >= 1.0:
@@ -539,7 +539,7 @@ def run_scan(config: dict) -> list[ArbOpportunity]:
     list[ArbOpportunity]
         All detected opportunities, sorted by spread descending.
     """
-    poly_cfg   = config["polymarket"]
+    poly_cfg = config["polymarket"]
     kalshi_cfg = config["kalshi"]
 
     poly_client = PolymarketClient(timeout=poly_cfg.get("timeout", 10))
@@ -553,7 +553,7 @@ def run_scan(config: dict) -> list[ArbOpportunity]:
     banner = "=" * 72
     print(f"\n{banner}")
     print("  MULTI-CLOB ARB SCANNER  |  Polymarket + Kalshi  |  v1.0.0")
-    print("  github.com/up2itnow/multi-clob-arb-scanner")
+    print("  github.com/up2itnow0822/multi-clob-arb-scanner")
     print(banner)
 
     all_oops: list[ArbOpportunity] = []
@@ -561,10 +561,10 @@ def run_scan(config: dict) -> list[ArbOpportunity]:
     for keyword in config["keywords"]:
         print(f"\n🔍 Scanning: '{keyword}'")
 
-        poly_markets   = poly_client.fetch_markets(keyword, limit=config["market_limit"]) \
-                         if poly_cfg.get("enabled", True) else []
+        poly_markets = poly_client.fetch_markets(keyword, limit=config["market_limit"]) \
+            if poly_cfg.get("enabled", True) else []
         kalshi_markets = kalshi_client.fetch_markets(keyword, limit=config["market_limit"]) \
-                         if kalshi_cfg.get("enabled", True) else []
+            if kalshi_cfg.get("enabled", True) else []
 
         print(f"   Polymarket: {len(poly_markets):3} markets  |  Kalshi: {len(kalshi_markets):3} markets")
 
