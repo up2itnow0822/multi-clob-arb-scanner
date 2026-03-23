@@ -553,10 +553,10 @@ def run_scan(config: dict) -> list[ArbOpportunity]:
     banner = "=" * 72
     print(f"\n{banner}")
     print("  MULTI-CLOB ARB SCANNER  |  Polymarket + Kalshi  |  v1.0.0")
-    print(f"  github.com/up2itnow/multi-clob-arb-scanner")
+    print("  github.com/up2itnow/multi-clob-arb-scanner")
     print(banner)
 
-    all_opps: list[ArbOpportunity] = []
+    all_oops: list[ArbOpportunity] = []
 
     for keyword in config["keywords"]:
         print(f"\n🔍 Scanning: '{keyword}'")
@@ -568,16 +568,16 @@ def run_scan(config: dict) -> list[ArbOpportunity]:
 
         print(f"   Polymarket: {len(poly_markets):3} markets  |  Kalshi: {len(kalshi_markets):3} markets")
 
-        opps = find_arb_opportunities(
+        oops = find_arb_opportunities(
             poly_markets,
             kalshi_markets,
             min_spread_pct=config["min_spread_pct"],
             min_word_overlap=config["min_word_overlap"],
         )
-        all_opps.extend(opps)
+        all_oops.extend(oops)
 
-    all_opps.sort(key=lambda x: x.spread_pct, reverse=True)
-    return all_opps
+    all_oops.sort(key=lambda x: x.spread_pct, reverse=True)
+    return all_oops
 
 
 # ---------------------------------------------------------------------------
